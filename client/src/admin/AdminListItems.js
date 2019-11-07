@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import ShopItem from "./ShopItem";
+import ShopItem from "../user/ShopItem";
 
-class Shop extends Component{
+class AdminListItems extends Component{
     constructor(props) {
         super(props);
         this.state={
@@ -20,7 +20,11 @@ class Shop extends Component{
             .then(response=>{
                 let temp_item_array = response.map(
                     (eachItem)=>{
-                        return(<ShopItem key={eachItem.id} item={eachItem} user={this.props.user}/>)
+                        return(<div>
+                            <p>{eachItem.name} (
+                                {eachItem.attack}/
+                                +{eachItem.health}/)</p>
+                        </div>)
                     }
                 );
                 this.setState({arrayOfItems:temp_item_array})
@@ -35,4 +39,4 @@ class Shop extends Component{
     }
 }
 
-export default Shop;
+export default AdminListItems;

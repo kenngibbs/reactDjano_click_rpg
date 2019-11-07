@@ -33,6 +33,10 @@ class LoginUser extends Component{
                     this.props.retrieveUserInfo(false, null);
                     this.setState({errorMessage: response.error});
                 }
+                else if(response.username === "admin"){
+                    this.props.retrieveUserInfo(true, response);
+                    this.props.setAdminTrue();
+                }
                 else{
                     this.props.retrieveUserInfo(true, response);
                 //     this.setState({

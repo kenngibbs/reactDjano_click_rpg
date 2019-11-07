@@ -31,8 +31,15 @@ def get_user_items(request):
 
 def add_user_items(request):
     requestBodyInfo = loads(request.body)
+    userModel = User.objects.get(id=requestBodyInfo["userID"])
+    itemModel = ShopItems.objects.get(id=requestBodyInfo["itemID"])
+    userModel.equippedItem = itemModel
+    userModel.save()
     # BackpackModel.objects.create(foreignKeyShopItem=requestBodyInfo["itemID"], foreignKeyUser=requestBodyInfo["userID"])
-    return HttpResponse("okay")
+
+    # return HttpResponse("okay")
+    serializer = UserSerializer(userModel)
+    return JsonResponse(serializer.data)
 
 
 def user_attack(request):

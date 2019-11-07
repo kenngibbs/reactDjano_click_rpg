@@ -10,9 +10,14 @@ class Home extends Component{
         }
     }
 
+
     componentDidMount() {
         this.getWeaponData();
         // this.getMonsterData();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("Did update!!!");
     }
 
     getWeaponData = ()=>{

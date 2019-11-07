@@ -19,7 +19,7 @@ class FightMonster extends Component{
             .then(response=>{
                 let temp_monster_array = response.map(
                     (eachMonster)=>{
-                        return(<EachMonster key={eachMonster.id} monster={eachMonster}/>)
+                        return(<EachMonster user={this.props.user} key={eachMonster.id} monster={eachMonster} getMonsterData={this.getMonsterData}/>)
                     }
                 );
                 this.setState({monsterArray:temp_monster_array})
