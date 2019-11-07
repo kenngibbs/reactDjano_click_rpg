@@ -34,14 +34,10 @@ class LoginUser extends Component{
                     this.setState({errorMessage: response.error});
                 }
                 else if(response.username === "admin"){
-                    this.props.retrieveUserInfo(true, response);
-                    this.props.setAdminTrue();
+                    this.props.retrieveUserInfo(true, response, true);
                 }
                 else{
-                    this.props.retrieveUserInfo(true, response);
-                //     this.setState({
-                //         isLoggedIn: true,
-                //         user: response,});
+                    this.props.retrieveUserInfo(true, response, false);
                 }
             });
     };

@@ -35,7 +35,7 @@ class ShopItem extends Component{
     render() {
         if(!this.state.goBackToHomePage) {
             return (<div>
-                <p><a href="#" onClick={this.updateEqippedItem}>{this.props.item.name}</a> (
+                <p><button className="buttonLookLookalike" onClick={this.updateEqippedItem}>{this.props.item.name}</button> (
                     +{this.props.item.attack} to attack
                     +{this.props.item.health} to health)</p>
             </div>);

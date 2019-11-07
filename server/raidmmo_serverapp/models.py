@@ -25,7 +25,7 @@ class ShopItems(models.Model):
 class User(models.Model):
     username = models.CharField(max_length=200, default="", unique=True)
     password = models.CharField(max_length=200, default="")
-    pictureURL = models.CharField(max_length=200, default="https://wingslax.com/wp-content/uploads/2017/12/no-image-available.png")
+    pictureURL = models.CharField(max_length=1000, default="https://wingslax.com/wp-content/uploads/2017/12/no-image-available.png")
     health = models.IntegerField(default=0)
     attack = models.IntegerField(default=0)
     equippedItem = models.ForeignKey(ShopItems, on_delete=models.CASCADE, null=True, blank=True)
