@@ -1,5 +1,5 @@
-from .models import User, MonsterModel, ShopItems, BackpackModel, CurrentRaid
-from .serializers import UserSerializer, MonsterSerializer, ShopItemsSerializer, BackpackModelSerializer, CurrentRaidModelSerializer
+from .models import User, MonsterModel, ShopItems#, BackpackModel, CurrentRaid
+from .serializers import UserSerializer, MonsterSerializer, ShopItemsSerializer#, BackpackModelSerializer, CurrentRaidModelSerializer
 from rest_framework import viewsets
 
 
@@ -18,11 +18,11 @@ class ShopItemViewSet(viewsets.ModelViewSet):
     serializer_class = ShopItemsSerializer
 
 
-class BackpackViewSet(viewsets.ModelViewSet):
-    queryset = BackpackModel.objects.all()
-    serializer_class = BackpackModelSerializer
-
-
-class CurrentRaidViewSet(viewsets.ModelViewSet):
-    queryset = CurrentRaid.objects.all()
-    serializer_class = CurrentRaidModelSerializer
+# class BackpackViewSet(viewsets.ModelViewSet):
+#     queryset = BackpackModel.objects.all()
+#     serializer_class = BackpackModelSerializer
+#
+#
+# class CurrentRaidViewSet(viewsets.ModelViewSet):
+#     queryset = CurrentRaid.objects.all()
+#     serializer_class = CurrentRaidModelSerializer

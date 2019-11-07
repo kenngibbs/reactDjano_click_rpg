@@ -1,5 +1,5 @@
 # from django.contrib.auth.models import User, Group
-from .models import User, MonsterModel, ShopItems, BackpackModel, CurrentRaid
+from .models import User, MonsterModel, ShopItems#, BackpackModel, CurrentRaid
 from rest_framework import serializers
 
 
@@ -21,13 +21,13 @@ class ShopItemsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class BackpackModelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = BackpackModel
-        fields = '__all__'
+# class BackpackModelSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = BackpackModel
+#         fields = '__all__'
 
 
-class CurrentRaidModelSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CurrentRaid
-        fields = '__all__'
+# class CurrentRaidModelSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = CurrentRaid
+#         fields = '__all__'

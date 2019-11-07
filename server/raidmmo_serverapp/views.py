@@ -1,6 +1,6 @@
 from django.http import HttpResponse, JsonResponse
-from .serializers import UserSerializer, BackpackModelSerializer
-from .models import User, BackpackModel, CurrentRaid, MonsterModel
+from .serializers import UserSerializer, ShopItemsSerializer#, BackpackModelSerializer
+from .models import User, MonsterModel, ShopItems#, BackpackModel
 from json import loads
 
 
@@ -11,31 +11,44 @@ def login_user(request):
     try:
         existingUser = User.objects.get(username=requestBodyInfo["username"])
     except User.DoesNotExist:
-        return HttpResponse("User Not Found")
+        return JsonResponse({"error": "User Not Found"})
 
     if existingUser.password == requestBodyInfo["password"]:
         serializer = UserSerializer(existingUser)
         return JsonResponse(serializer.data)
     else:
-        return HttpResponse("Username and Password Does Not Match")
+        return JsonResponse({"error": "Username and Password Does Not Match"})
 
 
 # Retrieve and send a list of items that belong to the userID
-def get_user_items(request, userID):
-    allUserItems = BackpackModel.objects.filter(foreignKeyUser=userID)
-    serializer = BackpackModelSerializer(allUserItems, many=True)
-    return JsonResponse(serializer.data, safe=False)
+def get_user_items(request):
+    requestBodyInfo = loads(request.body)
+
+    tempUser = User.objects.get(id=requestBodyInfo["userID"])
+    serializer = ShopItemsSerializer(tempUser.equippedItem)
+    return JsonResponse(serializer.data)
 
 
-def add_user_items(request, itemID):
-    return True
+def add_user_items(request):
+    requestBodyInfo = loads(request.body)
+    # BackpackModel.objects.create(foreignKeyShopItem=requestBodyInfo["itemID"], foreignKeyUser=requestBodyInfo["userID"])
+    return HttpResponse("okay")
 
 
-def user_attack(request, userID):
-    # print(CurrentRaid.objects.get(id=1))
-    currentMonsterModel = MonsterModel.objects.get(id=CurrentRaid.objects.get(id=1).currentMonsterForeignKey)
+def user_attack(request):
+    requestBodyInfo = loads(request.body)
+    monsterID = requestBodyInfo["monsterID"]
+    userID = requestBodyInfo["userID"]
+
+    currentMonsterModel = MonsterModel.objects.get(id=monsterID)
     userModel = User.objects.get(id=userID)
-    currentMonsterModel.health -= userModel.attack
+
+    # itemModels = BackpackModel.objects.filter(foreignKeyUser=userID)
+    # itemTotalAttack = 0
+    # for eachItem in itemModels:
+    #     itemTotalAttack += eachItem.foreignKeyShopItem.attack
+
+    currentMonsterModel.health -= (userModel.attack + userModel.equippedItem.attack)
     userModel.health -= currentMonsterModel.attack
     currentMonsterModel.save()
     userModel.save()
