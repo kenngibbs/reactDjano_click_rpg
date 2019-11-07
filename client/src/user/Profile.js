@@ -45,9 +45,9 @@ class Profile extends Component{
             })
             .then(data=>data.json())
             .then(response=>{
-                console.log("blah");
+                // console.log(response);
                 this.setState({goBackToHomePage:true}, ()=>
-                    this.props.retrieveUserInfo(true, response));
+                    this.props.retrieveUserInfo(true, response, false));
             });
     };
     render() {

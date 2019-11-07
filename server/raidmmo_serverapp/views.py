@@ -23,7 +23,6 @@ def login_user(request):
 # Retrieve and send a list of items that belong to the userID
 def get_user_items(request):
     requestBodyInfo = loads(request.body)
-
     tempUser = User.objects.get(id=requestBodyInfo["userID"])
     serializer = ShopItemsSerializer(tempUser.equippedItem)
     return JsonResponse(serializer.data)
@@ -35,9 +34,7 @@ def add_user_items(request):
     itemModel = ShopItems.objects.get(id=requestBodyInfo["itemID"])
     userModel.equippedItem = itemModel
     userModel.save()
-    # BackpackModel.objects.create(foreignKeyShopItem=requestBodyInfo["itemID"], foreignKeyUser=requestBodyInfo["userID"])
 
-    # return HttpResponse("okay")
     serializer = UserSerializer(userModel)
     return JsonResponse(serializer.data)
 
@@ -50,13 +47,14 @@ def user_attack(request):
     currentMonsterModel = MonsterModel.objects.get(id=monsterID)
     userModel = User.objects.get(id=userID)
 
-    # itemModels = BackpackModel.objects.filter(foreignKeyUser=userID)
-    # itemTotalAttack = 0
-    # for eachItem in itemModels:
-    #     itemTotalAttack += eachItem.foreignKeyShopItem.attack
+    if(userModel.equippedItem):
+        currentMonsterModel.health -= (userModel.attack + userModel.equippedItem.attack)
+    else:
+        currentMonsterModel.health -= (userModel.attack)
 
-    currentMonsterModel.health -= (userModel.attack + userModel.equippedItem.attack)
     userModel.health -= currentMonsterModel.attack
     currentMonsterModel.save()
     userModel.save()
-    return HttpResponse("okay")
+
+    serializer = UserSerializer(userModel)
+    return JsonResponse(serializer.data)

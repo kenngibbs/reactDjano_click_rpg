@@ -15,10 +15,11 @@ class EachMonster extends Component{
             },
             body:JSON.stringify(tempBody)
         })
-            .then(data=>data.text())
+            .then(data=>data.json())
             .then(response=>{
                 console.log(response);
                 this.props.getMonsterData();
+                this.props.retrieveUserInfo(true, response, false)
             })
     };
 

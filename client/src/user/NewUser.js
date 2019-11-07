@@ -13,6 +13,9 @@ class NewUser extends Component{
         e.preventDefault();
         let usernameFromInput = document.getElementById("new_username").value;
         let passwordFromInput = document.getElementById("new_password").value;
+        let pictureURLFromInput = document.getElementById("new_pictureURL").value;
+        let health = Math.floor(Math.random() * 200) + 50;
+        let attack = Math.floor(Math.random() * 30) + 5;
 
         fetch("/users/",{
             method: 'post',
@@ -22,6 +25,9 @@ class NewUser extends Component{
             body: JSON.stringify({
                 username: usernameFromInput,
                 password: passwordFromInput,
+                pictureURL: pictureURLFromInput,
+                health: health,
+                attack: attack,
             })
         })
             .then(data=>data.json())
@@ -51,6 +57,9 @@ class NewUser extends Component{
 
                 <label htmlFor="new_password">Enter New Password</label>
                 <input type="text" id="new_password" onChange={this.clearErrorMessage}/><br/>
+
+                <label htmlFor="new_pictureURL">Enter Picture URL</label>
+                <input type="text" id="new_pictureURL" onChange={this.clearErrorMessage}/><br/>
                 <button>Submit</button>
             </form>
             <h3>{this.state.errorMessage}</h3>

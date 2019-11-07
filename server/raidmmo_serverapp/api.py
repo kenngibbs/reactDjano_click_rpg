@@ -10,7 +10,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class MonsterViewSet(viewsets.ModelViewSet):
     # queryset = MonsterModel.objects.all()
-    queryset = MonsterModel.objects.filter(health__gt=-1000)
+    queryset = MonsterModel.objects.filter(health__gt=0)
     serializer_class = MonsterSerializer
 
 

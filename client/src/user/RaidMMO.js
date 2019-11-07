@@ -29,10 +29,6 @@ class RaidMMO extends Component{
         })
     };
 
-    // setAdminTrue=()=>{
-    //     this.setState({isAdmin:true})
-    // };
-
     logout=()=>{
         this.setState({
             isLoggedIn: false,
@@ -52,7 +48,7 @@ class RaidMMO extends Component{
                     <Link className="routeLink" to="/loggout" onClick={this.logout}>Log Out</Link>
                     <Switch>
                         <Route path="/fight">
-                            <FightMonster user={this.state.user}/>
+                            <FightMonster user={this.state.user} retrieveUserInfo={this.retrieveUserInfo}/>
                         </Route>
                         <Route path="/profile">
                             <Profile user={this.state.user} retrieveUserInfo={this.retrieveUserInfo}/>
@@ -88,6 +84,7 @@ class RaidMMO extends Component{
                         </Route>
                         <Route path="/">
                             <h3>Please select an option above. The Admin does not fight</h3>
+                            <p>I think I wanted to list all active users here, but haven't decided.</p>
                         </Route>
                     </Switch>
                 </Router>
