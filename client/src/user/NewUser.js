@@ -56,7 +56,7 @@ class NewUser extends Component{
                 <input type="text" id="new_username" onChange={this.clearErrorMessage}/><br/>
 
                 <label htmlFor="new_password">Enter New Password</label>
-                <input type="text" id="new_password" onChange={this.clearErrorMessage}/><br/>
+                <input type="password" id="new_password" onChange={this.clearErrorMessage}/><br/>
 
                 <label htmlFor="new_pictureURL">Enter Picture URL</label>
                 <input type="text" id="new_pictureURL" onChange={this.clearErrorMessage}/><br/>

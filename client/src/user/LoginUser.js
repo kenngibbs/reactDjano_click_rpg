@@ -55,7 +55,7 @@ class LoginUser extends Component{
                 <input autoFocus type="text" id="username" onChange={this.clearErrorMessage}/><br/>
 
                 <label htmlFor="password">Enter Password</label>
-                <input type="text" id="password" onChange={this.clearErrorMessage}/><br/>
+                <input type="password" id="password" onChange={this.clearErrorMessage}/><br/>
                 <button>Submit</button>
             </form>
             <h3>{this.state.errorMessage}</h3>

@@ -1,2 +1,6 @@
 server/.idea/
 client/.idea/
+.idea/
+server/server/__pycache__/
+server/raidmmo_serverapp/migrations/
+server/raidmmo_serverapp/__pycache__/
